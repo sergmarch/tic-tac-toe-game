@@ -1,2 +1,23 @@
-/* some style */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board__row {
+    display: flex;
+}
+
+.board__block {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    background-color: rebeccapurple;
+}
 

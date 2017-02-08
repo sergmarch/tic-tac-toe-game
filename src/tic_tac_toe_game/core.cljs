@@ -1,16 +1,14 @@
 (ns tic-tac-toe-game.core
-  (:require ))
+  (:require
+    [reagent.core :as reagent]
+    [re-frame.core :refer [dispatch-sync]]
+    [tic-tac-toe-game.view :as view]
+    [tic-tac-toe-game.handlers :as handlers]))
 
-(enable-console-print!)
+(defn run []
+  (dispatch-sync [:initialize])
+  (reagent/render [view/app]
+                  (.getElementById js/document "app")))
 
-(println "This text is printed from src/tic-tac-toe-game/core.cljs. Go ahead and edit it and see reloading in action.")
+(run)
 
-;; define your app data so that it doesn't get over-written on reload
-
-(defonce app-state (atom {:text "Hello world!"}))
-
-(defn on-js-reload []
-  ;; optionally touch your app-state to force rerendering depending on
-  ;; your application
-  ;; (swap! app-state update-in [:__figwheel_counter] inc)
-)
