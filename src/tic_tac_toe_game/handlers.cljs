@@ -14,8 +14,6 @@
 
 (def nums (utils/random-nums (:s board-size)))
 
-(.log js/console nums)
-
 (def initial-state {:board-size (:s board-size)
                     :board board
                     :nums nums
@@ -32,7 +30,13 @@
   :show-num
   (fn [db [_ index]]
     (let [[[_ num]] (into [] (filter #(= index (first %)) (:nums db)))
-          updated-board (aclone (:board db))]
-      (.log js/console (into [] updated-board))
-      (aset updated-board index num)
-      (assoc db :board updated-board))))
+          updated-board (into-array (:board db))]
+      (do
+        (aset updated-board index num)
+        (assoc db :board (into [] updated-board))))))
+
+;; subscriptions
+(register-sub
+  :board
+  (fn [db _]
+    (reaction (:board @db))))
