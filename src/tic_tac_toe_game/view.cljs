@@ -3,6 +3,8 @@
     [re-frame.core :refer [dispatch subscribe]]
     [tic-tac-toe-game.handlers :as handlers]))
 
+;; super test
+
 (defn render-scene [{:keys [s]} board]
   (into [:div.board]
         (let [[width height] s
